@@ -4,11 +4,12 @@ function centerTag() {
     if ($("[data-role=page]:visible").attr("data-dialog") == "true") {
 
     } else {
-        $(".ui-content:visible").css({
+        location.hash = "";
+        $("#mainPage .ui-content").css({
                 'padding': 0
             })
             //alert($("#tagDiv").height());
-        $(".ui-content-full").height($(window).height() - $(".ui-header:visible").height() - $(".ui-footer:visible").height());
+        $("#mainPage .ui-content-full").height($(window).height() - $("#mainPage .ui-header").height() - $("#mainPage .ui-footer").height());
         var tagDiv = ($("#tagDiv").height()) / 2
             //alert(tagDiv);
         var div = ($("#tag").height()) / 2
@@ -17,23 +18,24 @@ function centerTag() {
         var screenD = $(window).height();
         //alert(screen);
         // Get height of the header
-        var header = $('.ui-header:visible').height();
+        var header = $('#mainPage .ui-header').height();
 
         // Get height of the footer
-        var footer = $('.ui-footer:visible').height();
+        var footer = $('#mainPage .ui-footer').height();
         //alert(footer);
         // Simple calculation to get the remaining available height
         var deviceAgent = navigator.userAgent.toLowerCase();
         var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
         if (agentID) {
             var content = screenD - header - footer - 5;
-            $(".ui-header:visible").addClass("ui-header-ipod")
+            $("#mainPage .ui-header").addClass("ui-header-ipod")
+            $("#mainPage .ui-header-top").show();
         } else {
             var content = screenD - header - footer - 5;
             $(".ui-header-top").hide();
         }
         // Change the height of the `content` div
-        $('.ui-content:visible').css({
+        $('#mainPage .ui-content').css({
             'height': content
         });
     }
@@ -44,11 +46,11 @@ $(window).hashchange(function(ag) {
         //centerTag();
     }
     if (location.hash == "#change") {
-        //$app.changeValue();
+        $app.changeValue();
     }
 });
 $(window).on("pagecontainerchange", function(k, a) {
-    switch($(a.toPage[0]).attr("id")) {
+    switch ($(a.toPage[0]).attr("id")) {
         case "mainPage":
             centerTag();
             break;
@@ -66,12 +68,14 @@ $app.fRef.child("clientdata/mobapp/value").on("value", function(a) {
     //centerTag();
 });
 $app.changeValue = function() {
-    $("#loading").show();
+    //$("#loading").show();
     if ($("#changeMessage").val() !== "") {
         $app.fRef.child("clientdata/mobapp/value").set($("#changeMessage").val());
         $("#changeMessage").val("");
         centerTag();
+        $("#loading").hide();
     } else {
+        $("#loading").hide();
         return false;
     }
 }
