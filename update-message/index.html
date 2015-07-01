@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js" charset="utf-8"></script>
+    <link href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet" charset="utf-8">
+    </script>
+    <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js" charset="utf-8"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css" charset="utf-8">
+</head>
+
+<body>
+    <div class="ui-header-top">
+
+    </div>
+    <div data-role="page" id="mainPage">
+
+        <div data-role="header" class="ui-header">
+            <h1>Update Message</h1>
+        </div>
+        <div role="main" class="ui-content" style="text-align:center;">
+            <img id="loading" src="loading.gif" alt="Loading..." />
+            <div id="tagDiv">
+                <p id="tag"></p>
+            </div>
+        </div>
+        <div data-role="footer" class="ui-footer">
+            <div class="ui-controlgroup">
+                <a href="#editPage" class="ui-btn ui-icon-edit ui-btn-icon-left" data-rel="dialog">Edit message</a>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="editPage" data-dialog="true">
+        <div data-role="header" class="ui-header">
+            <h1>Edit message</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <div class="ui-controlgroup">
+                <input type="text" id="changeMessage" /> <a data-rel="back" href="#change" onclick="$app.changeValue()" class="ui-btn ui-btn-icon-left ui-icon-check" href="#change">Change</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
