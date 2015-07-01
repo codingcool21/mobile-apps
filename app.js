@@ -62,6 +62,7 @@ $app.fRef.child("clientdata/mobapp/value").on("value", function(a) {
     $("#tag").text(a.val());
     $app.currentValue = a.val();
     $("#changeMessage").attr("placeholder", a.val());
+    centerTag();
     //centerTag();
 });
 $app.changeValue = function() {
@@ -69,6 +70,7 @@ $app.changeValue = function() {
     if ($("#changeMessage").val() !== "") {
         $app.fRef.child("clientdata/mobapp/value").set($("#changeMessage").val());
         $("#changeMessage").val("");
+        centerTag();
     } else {
         return false;
     }
